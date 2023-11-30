@@ -258,6 +258,14 @@ nav li a:hover {
   color: #FE5F1E;
 }
 
+nav li span {
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+nav li span:hover {
+  color: #FE5F1E;
+}
+
 section.hero {
   background: #F8F8F8;
 }

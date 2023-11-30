@@ -21,6 +21,13 @@ nav li a{
         color:$primary;
     }
 }
+nav li span{
+    cursor: pointer;
+    transition: $smooth;
+    &:hover{
+        color:$primary;
+    }
+}
 
 section.hero{
     background: $secondary;
