@@ -24,7 +24,3 @@ function orderController() {
 }
 
 module.exports = orderController;
-
-
-
-module.exports=orderController
