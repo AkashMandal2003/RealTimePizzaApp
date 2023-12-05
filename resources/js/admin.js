@@ -76,7 +76,8 @@ function initAdmin(socket){
                     ${ moment(order.createdAt).format('hh:mm A') }
                 </td>
                 <td class="border px-4 py-2 text-center">
-                    ${ order.paymentStatus ? 'paid' : 'Not paid' }
+                    // ${ order.paymentStatus ? 'paid' : 'Not paid' }
+                    COD
                 </td>
             </tr>
         `
