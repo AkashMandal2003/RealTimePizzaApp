@@ -26,6 +26,8 @@ function initRoutes(app){
     
     app.get("/cart",cartController().index)
     app.post("/update-cart",cartController().update)
+    app.post("/remove-item", cartController().removeItem);
+    
 
     //Customer Routes
     app.post("/orders",auth,orderController().store);
@@ -33,7 +35,6 @@ function initRoutes(app){
     app.get("/orders",auth,orderController().index);
 
     app.get("/orders/:id",auth,orderController().show);
-
 
     //Admin routes
     app.get("/admin-orders",admin,AdminOrderController().index);

@@ -42,5 +42,7 @@
 [+] Order tracker
     [+] Socket connection
         - dependancies socket.io
+
+[ ] Add payment gateway
 [ ] Build project for deployment
 [ ] Deploy project on live server

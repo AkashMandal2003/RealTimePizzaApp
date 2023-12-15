@@ -36,6 +36,22 @@ function cartController(){
                 cart.totalPrice=cart.totalPrice+req.body.price;
             }
             return res.json({totalQty:req.session.cart.totalQty})
+        },
+        removeItem(req, res) {
+            let cart = req.session.cart;
+            const pizzaId = req.body.pizzaId;
+
+            if (cart.items[pizzaId]) {
+                const removedQty = cart.items[pizzaId].qty;
+                const removedPrice = cart.items[pizzaId].item.price * removedQty;
+
+                cart.totalQty -= removedQty;
+                cart.totalPrice -= removedPrice;
+
+                delete cart.items[pizzaId];
+            }
+
+            return res.redirect('/cart');
         }
     }
 }

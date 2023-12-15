@@ -445,3 +445,7 @@ section.status {
     font-size: 34px;
   }
 }
+.completed-order {
+  text-decoration: line-through;
+  color: #FE5F1E;
+}

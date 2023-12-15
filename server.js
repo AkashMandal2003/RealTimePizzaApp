@@ -29,7 +29,7 @@ app.use(session({
     store: MongoDbStore.create({
         mongoUrl: 'mongodb://127.0.0.1:27017/PizzaApp'
       }),
-    cookie:{maxAge:1000*60*60*24}
+    cookie:{maxAge:1000*60*60*12}
 }))
 
 //passport config
@@ -74,6 +74,7 @@ const server=app.listen(PORT,(err)=>{
 //Socket
 
 const io = require('socket.io')(server)
+// app.set('io', io);
 io.on('connection', (socket) => {
       // Join
       socket.on('join', (orderId) => {

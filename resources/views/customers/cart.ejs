@@ -1,6 +1,6 @@
 <section class="cart py-16">
 
-    <% if(session.cart){%>
+    <% if(session.cart && Object.keys(session.cart.items).length > 0){%>
         <div class="order container mx-auto xl:w-1/2">
             <div class="flex items-center border-b border-gray-300 pb-4">
                 <img src="/img/cart-black.png" alt="Cart-black">
@@ -17,6 +17,14 @@
                     </div>
                     <span class="flex-1"><%= pizza.qty %> Pcs</span>
                     <span class="font-bold text-lg">₹<%= pizza.item.price*pizza.qty %></span>
+                    <span class="ml-4">
+                        <form action="/remove-item" method="POST" class="ml-4">
+                            <input type="hidden" name="pizzaId" value="<%= pizza.item._id %>">
+                            <button type="submit" class="bg-red-600 hover:bg-red-700 text-white font-bold py-1 px-2 rounded-full focus:outline-none">
+                                Cancel
+                            </button>
+                        </form>
+                    </span>
                 </div>
                 <% } %>
             </div>
@@ -57,3 +65,32 @@
    <%} %>
    
 </section>
+
+<script>
+    
+    document.querySelectorAll('.cancel-form').forEach(form => {
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const formData = new FormData(this);
+
+            fetch('/remove-item', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Handle any UI updates if needed
+                if (Object.keys(data.cartItems).length === 0) {
+                    // If the cart is empty, update the DOM to show the empty cart section
+                    document.querySelector('.order').style.display = 'none'; // Hide the order summary
+                    document.querySelector('.empty-cart').style.display = 'block'; // Show the empty cart section
+                } else {
+                    // If there are items in the cart, reload the page for simplicity
+                    location.reload();
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    });
+</script>
