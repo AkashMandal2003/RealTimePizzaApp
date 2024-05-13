@@ -14,7 +14,7 @@ function statusController() {
                 })
                 .catch((err) => {
                     console.error(err);
-                    return res.redirect('/admin-orders');
+                    return res.redirect('/');
                 });
         }
     };

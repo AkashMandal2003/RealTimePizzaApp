@@ -9,6 +9,20 @@ const statusController = require("../app/http/controllers/admin/statusController
 const guest=require("../app/http/middlewares/guest");
 const auth=require("../app/http/middlewares/auth");
 const admin=require("../app/http/middlewares/admin");
+const addController = require("../app/http/controllers/admin/addPizzaController");
+
+
+const multer = require('multer');
+
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, './public/img');
+    },
+    filename: (req, file, cb) => {
+        cb(null, file.fieldname + '-' + Date.now() + '.' + file.originalname.split('.').pop());
+    }
+});
+const upload = multer({ storage: storage });
 
 function initRoutes(app){
 
@@ -38,7 +52,8 @@ function initRoutes(app){
 
     //Admin routes
     app.get("/admin-orders",admin,AdminOrderController().index);
-
+    app.get("/add-pizza",admin,addController().addPizza);
+    app.post("/add-pizza",admin,upload.single("image"),addController().addItem);
     app.post("/admin-orders/status",admin,statusController().update);
 
 }

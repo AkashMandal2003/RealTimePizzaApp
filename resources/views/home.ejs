@@ -26,14 +26,17 @@
                     </span>
                     <div class="flex items-center justify-around mt-6">
                         <span class="font-bold text-lg">₹<%=pizza.price%></span>
-                        <button data-pizza="<%= JSON.stringify(pizza)%>"
-                            class="add-to-cart rounded-full py-1 px-6 flex items-center font-bold">
-                            <span>+</span>
-                            <span class="ml-4">Add</span>
-                        </button>
+                        <% if(user && user.role=='customer'){%>
+                            <button data-pizza="<%= JSON.stringify(pizza)%>"
+                                class="add-to-cart rounded-full py-1 px-6 flex items-center font-bold">
+                                <span>+</span>
+                                <span class="ml-4">Add</span>
+                            </button>
+                        <% } %>
                     </div>
                 </div>
             </div>
             <%})%>
     </div>
 </section>
+

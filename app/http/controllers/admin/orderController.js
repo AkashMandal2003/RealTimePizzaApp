@@ -10,14 +10,15 @@ function orderController() {
                 .exec()
                 .then((orders) => {
                     if (req.xhr) {
-                        res.json(orders);
+                        return res.json(orders);
                     } else {
                         res.render('admin/orders', { orders });
                     }
                 })
                 .catch((err) => {
                     console.error(err);
-                    res.status(500).json({ error: 'Internal Server Error' });
+                    res.status(500).json({ error:
+                         'Internal Server Error' });
                 });
         }
     };
