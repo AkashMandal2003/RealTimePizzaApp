@@ -26,7 +26,15 @@
                     </span>
                     <div class="flex items-center justify-around mt-6">
                         <span class="font-bold text-lg">₹<%=pizza.price%></span>
-                        <% if(user && user.role=='customer'){%>
+                        <% if(user && user.role=='admin'){%>
+                            <form action="/remove-pizza" method="POST">
+                                <input type="hidden" name="pizzaId" value="<%= pizza._id %>">
+                                <button type="submit" class="remove-from-cart rounded-full py-1 px-6 flex items-center font-bold">
+                                    <span>-</span>
+                                    <span class="ml-4">Remove</span>
+                                </button>
+                            </form>
+                        <% } else{ %>
                             <button data-pizza="<%= JSON.stringify(pizza)%>"
                                 class="add-to-cart rounded-full py-1 px-6 flex items-center font-bold">
                                 <span>+</span>
